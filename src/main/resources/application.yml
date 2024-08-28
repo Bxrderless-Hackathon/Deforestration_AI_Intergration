@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/soilDB?createDatabaseIfNotExist=true
+    username: hackathon
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.spatial.dialect.postgis.PostgisDialect
+          format_sql: true
+    show-sql: true
+  flyway:
+    enabled: true
+    validate-on-migrate: true
