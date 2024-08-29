@@ -11,18 +11,19 @@ import org.locationtech.jts.geom.Point;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
-
 public class SoilData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Convert(converter = PointConverter.class) // Custom converter
+    @Convert(converter = PointConverter.class)
     private Point location;
 
     private double bulkDensity;
+    private String soilType;
+    private double phLevel;
+    private String moisture;
 
-
+    // Add other relevant fields here...
 }
