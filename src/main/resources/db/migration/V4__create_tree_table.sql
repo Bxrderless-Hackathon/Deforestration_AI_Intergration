@@ -1,0 +1,6 @@
+CREATE TABLE tree (
+id BIGSERIAL PRIMARY KEY,
+scientific_name VARCHAR(255) NOT NULL UNIQUE,
+ common_name VARCHAR(255) NOT NULL
+);
+

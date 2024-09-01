@@ -2,27 +2,29 @@ package co.za.heckathonchallenge.soil_detection_app.controller;
 
 import co.za.heckathonchallenge.soil_detection_app.model.SoilData;
 import co.za.heckathonchallenge.soil_detection_app.service.SoilDataApiService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/soil-data")
+@RequestMapping("/api/v1")
 public class SoilDataController {
 
-    @Autowired
-    private SoilDataApiService soilDataApiService;
+    private final SoilDataApiService soilDataApiService;
 
-    @GetMapping("/copernicus")
-    public SoilData getSoilDataFromCopernicus(
-            @RequestParam double longitude,
-            @RequestParam double latitude) {
-        return soilDataApiService.fetchSoilDataFromCopernicus(longitude, latitude);
+    @Autowired
+    public SoilDataController(SoilDataApiService soilDataApiService) {
+        this.soilDataApiService = soilDataApiService;
     }
 
-    @GetMapping("/dea")
-    public SoilData getSoilDataFromDea(
-            @RequestParam double longitude,
-            @RequestParam double latitude) {
-        return soilDataApiService.fetchSoilDataFromDea(longitude, latitude);
+    @GetMapping("/soil-data")
+    public String getSoilData(
+            @RequestParam double latitude,
+            @RequestParam double longitude) throws JsonProcessingException {
+        return soilDataApiService.fetchAndSaveSoilDataFromIsda(latitude, longitude);
     }
 }

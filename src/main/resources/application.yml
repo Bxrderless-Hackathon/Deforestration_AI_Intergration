@@ -15,7 +15,6 @@ spring:
     enabled: true
     validate-on-migrate: true
 api:
-  copernicus:
-    url: "https://example-copernicus-api.com/soil-data"
-  dea:
-    url: "https://example-dea-api.com/soil-data"
+  isda:
+    url: "https://api.isda-africa.com/v1/soilproperty"
+    key: "AIzaSyCruMPt43aekqITCooCNWGombhbcor3cf4"
